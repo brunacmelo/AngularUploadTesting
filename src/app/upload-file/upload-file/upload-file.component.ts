@@ -1,5 +1,6 @@
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { UploadFileService } from '../upload-file.service';
 
 @Component({
@@ -10,6 +11,8 @@ import { UploadFileService } from '../upload-file.service';
 export class UploadFileComponent implements OnInit {
 
   files: Set<File>;
+  form: FormGroup;
+  
   constructor(private service: UploadFileService) { }
 
   ngOnInit(): void {
@@ -31,7 +34,7 @@ export class UploadFileComponent implements OnInit {
 
   onUpload() {
     if (this.files && this.files.size > 0) {
-      this.service.upload(this.files, 'http://localhost:8000/upload')
+      this.service.upload(this.files, 'http://localhost:3000/upload')
         .subscribe(response => console.log('Upload Concluído'));
     }
   }
